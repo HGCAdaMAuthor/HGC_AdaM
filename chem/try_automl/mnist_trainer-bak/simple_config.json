@@ -1,0 +1,12 @@
+{
+    "Token":"bNcwaI-FirxUm6paods5NQ",
+    "business_flag": "public_exp",
+    "model_local_file_path": "/apdcephfs/private_meowliu/ft_local/mnist_automl/mnist_trainer",
+    "host_num": 1,
+    "host_gpu_num": 1,
+    "image_full_name": "mirrors.tencent.com/star_library/g-tlinux2.2-python3.6-cuda9.0-cudnn7.6-tf1.12-openmpi4.0.3-nccl2.5.6-ofed4.6-horovod:latest",
+    "automl_params": {
+        "automl_config_path":"/apdcephfs/private_meowliu/ft_local/mnist_automl/mnist_trainer/automl_config.py",
+        "trainner_log_path": "/apdcephfs/private_meowliu/ft_local/mnist_automl/logs/$TASK_FLAG/$METRICS_TRIAL_NAME/out.log"
+    }
+}

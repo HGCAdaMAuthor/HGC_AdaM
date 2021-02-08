@@ -1,0 +1,10 @@
+{
+    "Token":"bNcwaI-FirxUm6paods5NQ",
+    "business_flag": "DrugAI",
+    "readable_name": "gcc_pret",
+    "is_elasticity": false,
+    "model_local_file_path": "/apdcephfs/private_meowliu/ft_local/graph_self_learn/start_pret_pri",
+    "host_num": 1,
+    "host_gpu_num": 1,
+    "image_full_name": "mirrors.tencent.com/simple_hh/g-tlinux2.2-python3.7-cuda10.1-nccl2.5.6-pytorch1.6-torchgeometric1.6-hvd-pyg-rdkit-dgl-cu101-cogdl-torch-cluster-torch-cluser-simplev1:latest"
+}

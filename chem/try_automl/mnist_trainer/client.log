@@ -1,0 +1,10 @@
+create dataset ing...
+create dataset success
+create model ing...
+Upload /root/mnist_trainer_jizhi_tmp.zip: 100% complete. 
+create model success
+create automl config ing...
+/apdcephfs/private_meowliu/ft_local/mnist_automl/mnist_trainer/automl_config.py
+Upload /apdcephfs/private_meowliu/ft_local/mnist_automl/mnist_trainer/automl_config.py: 100% complete. 
+create automlConfigfile success
+[error][-1100408][细分领域填写错误，只能选择]

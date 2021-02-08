@@ -1,0 +1,4 @@
+#python3 /apdcephfs/private_meowliu/ft_local/gnn_pretraining/pretrain_contrast_sim_based_with_neg_multi_pos_batch.py --device 0 --num_neg_samples 7 --neg_sample_stra rwr_hop_pos_neg_on_big_graph_bat --num_samples 5 --T 1 --select_other_node_stra last_one --restart_prob 0.2 --num_hops 2 --p 0.7 --q 0.6 --construct_big_graph --rw_hops 16 --num_path 7 --num_com_negs 49 --env jizhi # --val_dataset bbbp # --data_para
+#python3 /apdcephfs/private_meowliu/ft_local/gnn_pretraining/pretrain_masker_nll_with_eval.py --device 0 --epochs 100 --mask_times 5 --batch_size 256 --gnn_type gin --env jizhi --val_dataset bbbp # --val_dataset bbbp # --data_para
+python3 \
+/apdcephfs/private_meowliu/ft_local/gnn_pretraining/compute_similarity.py

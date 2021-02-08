@@ -1,0 +1,27 @@
+FROM mirrors.tencent.com/simple_hh/g-tlinux2.2-python3.7-cuda10.1-nccl2.5.6-pytorch1.6-torchgeometric1.6-hvd-pyg-rdkit-dgl-cu101-cogdl-simplev1:latest
+# RUN pip3 install --upgrade pip && \
+# pip3 install jieba && \
+# HOROVOD_GPU_OPERATIONS=NCCL pip3 install horovod
+# RUN pip3 install networkx
+# RUN conda install -c rdkit rdkit
+# SHELL ["source", "~/.bashrc"]
+ENV PATH /root/anaconda3/bin:$PATH
+# RUN echo "export PATH="/root/anaconda3/bin:$PATH"" >> ~/.bashrc && \
+RUN conda init bash && \
+# conda activate base && \
+# pip3 install dgl-cu101
+# pip3 install torch-cluster
+pip3 install grakel
+# conda install -c dglteam dgl
+# /bin/bash -c "source ~/.bashrc" && \
+# # /bin/bash -c "conda init bash" && \
+# /bin/bash -c "conda activate base" && \
+# /bin/bash -c "conda install -c dglteam dgl"
+# RUN pip3 install dgl
+# RUN pip3 install splitter
+# RUN
+# RUN
+# RUN pip3 install dgl
+# RUN conda install -c dglteam dgl
+# RUN /bin/bash -c "conda install -c dglteam dgl"
+# RUN pip3 install -i http://mirror-sng.oa.com/pypi/web/simple/ --trusted-host mirror-sng.oa.com torch_geometric --no-cache

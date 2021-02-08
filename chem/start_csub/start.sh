@@ -1,0 +1,1 @@
+python3 /apdcephfs/private_meowliu/ft_local/gnn_pretraining/pretrain_contrast_subgraph.py --device 0

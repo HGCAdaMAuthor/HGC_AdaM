@@ -1,0 +1,1 @@
+python3.6 fully_connected_feed.py  --train_dir /apdcephfs/private_xxx/mnist/data  --max_steps  100000 --batch_size=1000

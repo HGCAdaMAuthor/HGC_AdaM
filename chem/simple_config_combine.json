@@ -1,0 +1,9 @@
+{
+    "Token":"bNcwaI-FirxUm6paods5NQ",
+    "business_flag": "public_exp",
+    "readable_name": "combine_v2_pretrain_for_clintox",
+    "model_local_file_path": "/apdcephfs/private_meowliu/ft_local/gnn_pretraining/start_combine",
+    "host_num": 1,
+    "host_gpu_num": 1,
+    "image_full_name": "mirrors.tencent.com/simple_hh/g-tlinux2.2-python3.7-cuda10.1-nccl2.5.6-pytorch1.6-torchgeometric1.6-hvd-pyg-rdkit-simplev4:latest"
+}

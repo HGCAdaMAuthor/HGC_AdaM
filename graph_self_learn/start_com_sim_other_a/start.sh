@@ -1,0 +1,1 @@
+python3 /apdcephfs/share_1142145/meowliu/graph_self_learn/compute_similarity.py
