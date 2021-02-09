@@ -58,3 +58,14 @@ CON_HGCAM_RW (GIN):
 | graph_pooling | sum    | sum      | sum     | sum     | sum   | sum   | sum     |
 | lr_scale      | 1.0    | 1.0      | 1.0     | 1.1     | 1.0   | 1.0   | 1.0     |
 
+
+
+C_Subgraph (GIN): 
+
+|               | SIDER   | ClinTox | BACE    | HIV     | BBBP  | Tox21   | ToxCast |
+| ------------- | ------- | ------- | ------- | ------- | ----- | ------- | ------- |
+| batch_size    | 256     | 128     | 32      | 32      | 256   | 64      | 64      |
+| lr            | 0.00976 | 0.00789 | 0.00029 | 0.00239 | 0.001 | 0.00935 | 0.00734 |
+| dropout_ratio | 0.7     | 0.6     | 0.2     | 0.4     | 0.1   | 0.5     | 0.1     |
+| graph_pooling | sum     | sum     | sum     | sum     | sum   | sum     | sum     |
+| lr_scale      | 1.0     | 1.0     | 1.0     | 1.1     | 1.0   | 1.0     | 1.0     |

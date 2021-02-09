@@ -1,5 +1,53 @@
 ### Hierarchical Graph Contrastive Pretraining with AdaptiveMasking
 
+#### Requirements 
+
+##### Pre-training stage
+
+```
+pytorch 1.4.0 
+torch-geometric 1.4.3 
+rdkit 2020.03.2
+scikit-learn 0.22.1
+python 3.6.10
+torch-scatter 2.0.3
+torch-sparse 0.5.1
+dgl 0.5.2
+```
+
+##### Fine-tuning stage
+
+```
+pytorch 1.4.0
+dgl 0.5.3 
+scikit-learn 0.22.1
+torch-geometric 1.6.1
+torch-scatter 2.0.5
+torch-cluster 1.5.7
+torch-sparse 0.6.7
+```
+
+
+
+#### Time consumption comparison
+
+##### Pre-training stage
+
+We compare the time consumption between `AdaM` strategy using different masking times and `HGC` strategy with basic pre-training strategyes (`RdM` and `C_Subgraph`. The results are summarized as follows. Experiments are completed on a single P40 GPU, which is different from the pre-training hardward configuration used in our pre-training stage. 
+
+|                          | RdM  | k=3   | k=5   | k=7   |
+| ------------------------ | ---- | ----- | ----- | ----- |
+| Time (min. / 7813 steps) | 0    | +12.5 | +19.4 | +25.0 |
+
+|                          | C_Subgraph | HGC (HO) |
+| ------------------------ | ---------- | -------- |
+| Time (min. / 7813 steps) | 0          | +16.7    |
+
+##### Pre-processing stage
+
+Actually, the progressive time complexity for the pre-processing process is O((k + log(N)N), where k is the maximum number of candidates, N is the number of graph instances in the pre-training dataset. We then present some experimental values of the time consumption in each step of our pre-processing to demonstrate that although it do take noticeable amount of time, time spent on such process is tolerable if implemented carefully and also worthy concerning the benefit it brings. For each step in the molecular pre-training dataset (`MolD`, containing `2000000` graph instances) pre-processing, specific values of the spent time are listed as follows: (1) Calculate the molecular weight, numbers of rings and atoms in each molecule using the Python package RDKit (~1187.8 s ~ 20 mins). (2) Sort molecules based on the molecular weight using the build-in function \verb|sorted| in Python (~ 11.1 s). (3) Get candidates with the maximum number of candidates set to 70 based on the molecular weight, numbers of rings and atoms which have been stored in step (1) implemented with C++ (~230.0 s ~ 3.8 mins). (4) Calculated fingerprints for molecules using the Python package RDKit (~ 168 mins ~ 3 hrs). (5) Calculate fingerprint similarity scores for each molecule and its candidates using the Python package RDKit (~ 1257.6 s ~ 21 mins). The whole pre-processing process for `MolD` can be completed in less than 4 hours with no parallel calculation or complex optimization. 
+As for social network graph pre-training datasets where graph instances are RWR induced subgraphs (i.e., `SSAD`) or small social graphs (i.e., `SGCD` and `BSGD`), the difference between whose pre-processing and the one for `MolD` is how to compute similarity scores between each graph instance and its candidates. We use Weisfeiler-Lehman Graph Kernel with 3 iterations implemented in the Python package GraKel to get normalized similarity scores. Since the progressive time complexity for fitting a graph kernel using the target graph and then use it to transform candidate graph instances is also O(kN), the time complexity for the whole pre-processing is then O((k + log(N)N), the same with pre-processing for `MolD`. However, we observe that such fit-and-transform process really takes time in practice. To speed up the process, we process the calculation in parallel on 20 CPUs, which takes less than 1 hour for`SGCD` which containing `156754` graph instances to complete. 
+
 #### Datasets 
 
 ##### Pre-training datasets
@@ -11,6 +59,8 @@ For `SSAD`, data will be obtained in pre-training process. Moreover, download th
 For `BSGD`, download from [BSGD](https://drive.google.com/file/d/16Y3YfZYMVLl3MQMH8mmLCC9tUPMwjRzp/view?usp=sharing), unzip the file and put them under `./chem/dataset` folder. 
 
 For `SGCD`, download from [SGCD](https://drive.google.com/file/d/1N7mE4BvdewAn7hX18oOerxrXM9tsRyS0/view?usp=sharing), unzip the file and put them under `./chem/dataset/ALL_GRA` folder. 
+
+For `MolD`, download from [MolD](https://drive.google.com/file/d/1iKygf_0FnMXTx6daZuv4W1lSMSaN8Rc5/view?usp=sharing), unzip the file and put them under `./chem/dataset/zinc_standard_agent/processed` folder. 
 
 ##### Fine-tuning datasets
 
