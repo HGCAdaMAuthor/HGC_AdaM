@@ -54,11 +54,11 @@ As for social network graph pre-training datasets where graph instances are RWR 
 
 For molecular graph pre-training dataset (`MolD`), please refer to [snap-pretrain](https://github.com/snap-stanford/pretrain-gnns) and proceed following their description for `chem data`. 
 
-For `SSAD`, data will be obtained in pre-training process. Moreover, download the processed data  from [SSAD](https://drive.google.com/file/d/1HcARX612-71cU14xNhKb-jGoqenz7AI0/view?usp=sharing), and put `subgraphs_rwr_3.bin` under `./graph_self_learn/data_bin/dgl/subgraphs2` folder, put `idx_to_candi_idx_list_dict_rwr_3.npy` under `./graph_self_learn/data_bin/dgl/subgraphs2` folder, put `idx_to_sim_score_dict_3.npy` under `./graph_self_learn/data_bin/dgl/subgraphs2` folder. 
+For `AC_PU_NF`, data will be obtained in pre-training process. Moreover, download the processed data  from [AC_PU_NF](https://drive.google.com/file/d/1HcARX612-71cU14xNhKb-jGoqenz7AI0/view?usp=sharing), and put `subgraphs_rwr_3.bin` under `./graph_self_learn/data_bin/dgl/subgraphs2` folder, put `idx_to_candi_idx_list_dict_rwr_3.npy` under `./graph_self_learn/data_bin/dgl/subgraphs2` folder, put `idx_to_sim_score_dict_3.npy` under `./graph_self_learn/data_bin/dgl/subgraphs2` folder. 
 
-For `BSGD`, download from [BSGD](https://drive.google.com/file/d/16Y3YfZYMVLl3MQMH8mmLCC9tUPMwjRzp/view?usp=sharing), unzip the file and put them under `./chem/dataset` folder. 
+For `Soc_S_NF`, download from [Soc_S_NF](https://drive.google.com/file/d/16Y3YfZYMVLl3MQMH8mmLCC9tUPMwjRzp/view?usp=sharing), unzip the file and put them under `./chem/dataset` folder. 
 
-For `SGCD`, download from [SGCD](https://drive.google.com/file/d/1N7mE4BvdewAn7hX18oOerxrXM9tsRyS0/view?usp=sharing), unzip the file and put them under `./chem/dataset/ALL_GRA` folder. 
+For `Soc_L_NF`, download from [Soc_L_NF](https://drive.google.com/file/d/1N7mE4BvdewAn7hX18oOerxrXM9tsRyS0/view?usp=sharing), unzip the file and put them under `./chem/dataset/ALL_GRA` folder. 
 
 For `MolD`, download from [MolD](https://drive.google.com/file/d/1iKygf_0FnMXTx6daZuv4W1lSMSaN8Rc5/view?usp=sharing), unzip the file and put them under `./chem/dataset/zinc_standard_agent/processed` folder. 
 
@@ -72,14 +72,14 @@ For social network graph classification datasets, we have save the `soc_graph.zi
 
 #### Pre-training 
 
-For `SSAD` pre-training, refer to the following commands: 
+For `AC_PU_NF` pre-training, refer to the following commands: 
 
 ```bash
 cd ./graph_self_learn
 bash scripts/pret.sh <gpu> --moco --nce-k 256 --dataset con_dgl
 ```
 
-For `SGCD` pre-training, refer to the following commands: 
+For `Soc_L_NF` pre-training, refer to the following commands: 
 
 ```bash
 cd ./chem
@@ -88,7 +88,7 @@ python3 ./pretrain_contrast_sim_based_soc_datasets.py \
 --gnn_type gin --batch_size 32 --dataset other_soc
 ```
 
-For `BSGD` pre-training, refer to the following commands: 
+For `Soc_S_NF` pre-training, refer to the following commands: 
 
 ```bash
 cd ./chem
@@ -162,7 +162,7 @@ bash ./start_local/start.sh <dataset> <device> <model_file_pth> <lr> <dropout_ra
 
 ##### Social network graph datasets --- Node classification 
 
-To test `HGC (SSAD)` model in the paper on node classification datasets, please refer to the following commands: 
+To test `HGC (AC_PU_NF)` model in the paper on node classification datasets, please refer to the following commands: 
 
 ```bash
 cd ./graph_self_learn
@@ -182,7 +182,7 @@ The correspondance between dataset names listed **in the paper** and those shoul
 | RDT-B    | `rdt-b`       |
 | RDT-M    | `rdt-5k`      |
 
-For models trained on the **molecular graph** pre-training dataset and **social classification datasets** (`SGCD` and `BSGD`), the correspondance between strategies listed in the paper and the `model_file_pth` in `./chem/pt_saved_model` is as follows: 
+For models trained on the **molecular graph** pre-training dataset and **social classification datasets** (`Soc_L_NF` and `Soc_S_NF`), the correspondance between strategies listed in the paper and the `model_file_pth` in `./chem/pt_saved_model` is as follows: 
 
 | Strategy       | model_file_pth               |
 | -------------- | ---------------------------- |
